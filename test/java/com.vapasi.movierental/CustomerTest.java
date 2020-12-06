@@ -1,35 +1,49 @@
 package com.vapasi.movierental;
 
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class CustomerTest {
 
-
     @Test
-    public void shouldReturnValidStatement() {
+    public void shouldReturnSuccessAfterAddingRental() {
 
         Customer customer = new Customer("Mark");
-        String actualOutput = customer.statement();
-        String expectedOutput = null;
+        Children childrenMovie = new Children("Tom and Jerry");
+        Children childrenMovie1 = new Children("Madagascar");
+        NewRelease newMovie = new NewRelease("Avatar 2.0");
+        Regular regularMovie = new Regular("Titanic");
+        Rental rental = new Rental(childrenMovie,2);
+        Rental rental3 = new Rental(childrenMovie1,7);
+        Rental rental1 = new Rental(newMovie,10);
+        Rental rental2 = new Rental(regularMovie,10);
+        customer.addRental(rental);
+        customer.addRental(rental1);
+        customer.addRental(rental2);
+        customer.addRental(rental3);
 
-        assertEquals(expectedOutput, actualOutput);
+        String actualOutput = customer.statement();
+
+        assertNotNull(actualOutput);
     }
 
     @Test
     public void shouldReturnSuccessOnAddingRental() {
 
         Customer customer = new Customer("Mark");
-        Movie movie = new Movie("Day of tommorrow",1);
-        Rental rental = new Rental(movie,2);
+        Children childrenMovie = new Children("Tom and Jerry");
+        NewRelease newMovie = new NewRelease("Avatar 2.0");
+        Regular regularMovie = new Regular("Titanic");
+        Rental rental = new Rental(childrenMovie,2);
+        Rental rental1 = new Rental(newMovie,10);
+        Rental rental2 = new Rental(regularMovie,10);
         customer.addRental(rental);
+        customer.addRental(rental1);
+        customer.addRental(rental2);
 
         String actualOutput = customer.statement();
-        String expectedOutput = null;
 
-        assertEquals(expectedOutput, actualOutput);
+        assertNotNull(actualOutput);
 
 
     }
