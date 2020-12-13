@@ -30,18 +30,12 @@ public class Customer {
         rentals.add(rental);
     }
 
-    public String statement() {
+    public String getStatement() {
         StringBuilder statement = new StringBuilder();
         statement.append(PRINT_CUSTOMER_NAME_TEXT);
         statement.append(this.name);
         statement.append(PRINT_SPACE_NEWLINE);
-        for( Rental rental : rentals) {
-            statement.append(PRINT_SPACE_TAB);
-            statement.append(rental.getMovie().getTitle().toString());
-            statement.append(PRINT_SPACE_TAB);
-            statement.append(rental.getRentAmount());
-            statement.append(PRINT_SPACE_NEWLINE);
-        }
+        getMovieRentalStatement(statement);
         statement.append(PRINT_AMOUNT_OWED_TEXT);
         statement.append(getTotalRentalAmount());
         statement.append(PRINT_SPACE_NEWLINE);
@@ -51,6 +45,17 @@ public class Customer {
         return statement.toString();
     }
 
+    private StringBuilder getMovieRentalStatement(StringBuilder statement)
+    {
+        for( Rental rental : rentals) {
+            statement.append(PRINT_SPACE_TAB);
+            statement.append(rental.getMovie().getTitle().toString());
+            statement.append(PRINT_SPACE_TAB);
+            statement.append(rental.getRentAmount());
+            statement.append(PRINT_SPACE_NEWLINE);
+        }
+        return statement;
+    }
     private double getTotalRentalAmount()
     {
         Stream<Rental> rentalStreamOfValidRentsAmounts = rentals.stream().filter(rental -> rental.getRentAmount() != 0.0);

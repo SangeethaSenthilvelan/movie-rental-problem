@@ -2,6 +2,7 @@ package com.vapasi.movierental;
 
 import org.junit.Test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class CustomerTest {
@@ -23,9 +24,10 @@ public class CustomerTest {
         customer.addRental(rental2);
         customer.addRental(rental3);
 
-        String actualOutput = customer.statement();
+        String actualOutput = customer.getStatement();
+        String expected = null;
 
-        assertNotNull(actualOutput);
+        assertEquals(expected,actualOutput);
     }
 
     @Test
@@ -42,7 +44,7 @@ public class CustomerTest {
         customer.addRental(rental1);
         customer.addRental(rental2);
 
-        String actualOutput = customer.statement();
+        String actualOutput = customer.getStatement();
 
         assertNotNull(actualOutput);
 
