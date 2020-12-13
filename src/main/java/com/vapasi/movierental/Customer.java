@@ -11,7 +11,7 @@ import static java.util.stream.Collectors.toList;
 public class Customer {
 
     private String name;
-    private List<Rental> rentals = new ArrayList<Rental>();
+    private List<Movie> moviesRented = new ArrayList<Movie>();
     public static final String PRINT_CUSTOMER_NAME_TEXT= "Rental record for ";
     public static final String PRINT_SPACE_NEWLINE= "\n";
     public static final String PRINT_SPACE_TAB = "\t";
@@ -23,11 +23,10 @@ public class Customer {
         this.name = name;
     }
 
-    public void addRental(Rental rental){
-
-        rental.calculateRentAmount();
-        rental.calculateFrequentRenterPoints();
-        rentals.add(rental);
+    public boolean rentMovie(Movie movie,Rent rent){
+        movie.rentAmount(rent);
+        movie.points(rent);
+        return this.moviesRented.add(movie);
     }
 
     public String getStatement() {
@@ -47,23 +46,23 @@ public class Customer {
 
     private StringBuilder getMovieRentalStatement(StringBuilder statement)
     {
-        for( Rental rental : rentals) {
+        for( Movie movie : moviesRented) {
             statement.append(PRINT_SPACE_TAB);
-            statement.append(rental.getMovie().getTitle().toString());
+            statement.append(movie.getTitle());
             statement.append(PRINT_SPACE_TAB);
-            statement.append(rental.getRentAmount());
+            statement.append(movie.getRent());
             statement.append(PRINT_SPACE_NEWLINE);
         }
         return statement;
     }
     private double getTotalRentalAmount()
     {
-        return rentals.stream().mapToDouble(Rental::getRentAmount).sum();
+        return moviesRented.stream().mapToDouble(Movie::getRent).sum();
     }
 
     private double getFrequentRenterPoint()
     {
-       return rentals.stream().mapToDouble(Rental::getFrequentRenterPoints).sum();
+       return moviesRented.stream().mapToInt(Movie::getPoints).sum();
 
 
     }

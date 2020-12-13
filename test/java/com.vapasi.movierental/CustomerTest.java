@@ -2,45 +2,40 @@ package com.vapasi.movierental;
 
 import org.junit.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class CustomerTest {
 
     @Test
-    public void shouldReturnSuccessAfterAddingRental() {
+    public void shouldReturnSuccessAfterRentMovieByCustomer() {
+
+        Customer customer = new Customer("Mark");
+        ChildrenMovie childrenMovie = new ChildrenMovie("Tom and Jerry");
+        Rent rental = new Rent(2);
+
+        boolean expected = customer.rentMovie(childrenMovie,rental);
+
+        assertTrue(expected);
+
+    }
+
+    @Test
+    public void shouldReturnSuccessOnAddingRental() {
+
 
         Customer customer = new Customer("Mark");
         ChildrenMovie childrenMovie = new ChildrenMovie("Tom and Jerry");
         ChildrenMovie childrenMovie1 = new ChildrenMovie("Madagascar");
         NewReleaseMovie newMovie = new NewReleaseMovie("Avatar 2.0");
         RegularMovie regularMovie = new RegularMovie("Titanic");
-        Rental rental = new Rental(childrenMovie,2);
-        Rental rental3 = new Rental(childrenMovie1,7);
-        Rental rental1 = new Rental(newMovie,10);
-        Rental rental2 = new Rental(regularMovie,10);
-        customer.addRental(rental);
-        customer.addRental(rental1);
-        customer.addRental(rental2);
-        customer.addRental(rental3);
-
-        String actualOutput = customer.getStatement();
-        assertNotNull(actualOutput);
-    }
-
-    @Test
-    public void shouldReturnSuccessOnAddingRental() {
-
-        Customer customer = new Customer("Mark");
-        ChildrenMovie childrenMovie = new ChildrenMovie("Tom and Jerry");
-        NewReleaseMovie newMovie = new NewReleaseMovie("Avatar 2.0");
-        RegularMovie regularMovie = new RegularMovie("Titanic");
-        Rental rental = new Rental(childrenMovie,2);
-        Rental rental1 = new Rental(newMovie,10);
-        Rental rental2 = new Rental(regularMovie,10);
-        customer.addRental(rental);
-        customer.addRental(rental1);
-        customer.addRental(rental2);
+        Rent rental = new Rent(2);
+        Rent rental3 = new Rent(7);
+        Rent rental1 = new Rent(10);
+        Rent rental2 = new Rent(10);
+        customer.rentMovie(childrenMovie,rental);
+        customer.rentMovie(newMovie,rental1);
+        customer.rentMovie(regularMovie,rental2);
+        customer.rentMovie(childrenMovie1,rental3);
 
         String actualOutput = customer.getStatement();
 

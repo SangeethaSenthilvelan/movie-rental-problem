@@ -1,33 +1,19 @@
 package com.vapasi.movierental;
 
-public class ChildrenMovie implements Movie{
-    public static final double CHILDREN_PRICE_BASE_CODE = 1.5;
-    public static final double CHILDREN_FACTOR = 1.5;
-    public static final int CHILDREN_DAY_LIMIT = 3;
-
-    private String title;
+public class ChildrenMovie extends Movie{
+    private static final double CHILDREN_PRICE_BASE_CODE = 1.5;
+    private static final int CHILDREN_DAY_LIMIT = 3;
 
     public ChildrenMovie(String title) {
-        this.title = title;
+        super(title);
     }
 
     @Override
-    public double getPriceCode() {
-        return CHILDREN_PRICE_BASE_CODE;
+    public void rentAmount(Rent rent) {
+        int extraDays = 0;
+        if(rent.getDaysRented()>this.CHILDREN_DAY_LIMIT)
+            extraDays = rent.getDaysRented() -this.CHILDREN_DAY_LIMIT;
+        super.setRent(this.CHILDREN_PRICE_BASE_CODE + (extraDays * this.CHILDREN_PRICE_BASE_CODE));
     }
 
-    @Override
-    public double getFactor() {
-        return CHILDREN_FACTOR;
-    }
-
-    @Override
-    public int getDayLimit() {
-        return CHILDREN_DAY_LIMIT;
-    }
-
-    @Override
-    public String getTitle() {
-        return this.title;
-    }
 }
