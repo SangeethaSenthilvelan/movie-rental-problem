@@ -1,6 +1,9 @@
 package com.vapasi.movierental;
 
 public class RegularMovie implements Movie{
+    public static final double REGULAR_PRICE_BASE_CODE = 2;
+    public static final double REGULAR_FACTOR = 1.5;
+    public static final int REGULAR_DAY_LIMIT = 2;
     private String title;
 
     public RegularMovie(String title) {
