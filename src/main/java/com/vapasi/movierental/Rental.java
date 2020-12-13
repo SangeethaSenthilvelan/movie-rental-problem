@@ -34,7 +34,7 @@ public class Rental {
     }
     public void calculateFrequentRenterPoints() {
        this.frequentRenterPoints++;
-        if((this.movie) instanceof NewRelease && this.daysRented > FREQUENT_RENTER_DAY_LIMIT_FOR_NEW_RELEASE)
+        if((this.movie) instanceof NewReleaseMovie && this.daysRented > FREQUENT_RENTER_DAY_LIMIT_FOR_NEW_RELEASE)
             this.frequentRenterPoints++;
 
     }

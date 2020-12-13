@@ -1,9 +1,9 @@
 package com.vapasi.movierental;
 
-public class Regular  implements Movie{
+public class RegularMovie implements Movie{
     private String title;
 
-    public Regular(String title) {
+    public RegularMovie(String title) {
         this.title = title;
     }
 

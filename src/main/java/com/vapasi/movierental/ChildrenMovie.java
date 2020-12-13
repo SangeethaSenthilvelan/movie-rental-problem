@@ -1,9 +1,9 @@
 package com.vapasi.movierental;
 
-public class Children implements Movie{
+public class ChildrenMovie implements Movie{
     private String title;
 
-    public Children(String title) {
+    public ChildrenMovie(String title) {
         this.title = title;
     }
 

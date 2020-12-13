@@ -1,9 +1,9 @@
 package com.vapasi.movierental;
 
-public class NewRelease implements Movie{
+public class NewReleaseMovie implements Movie{
     private String title;
 
-    public NewRelease(String title) {
+    public NewReleaseMovie(String title) {
         this.title = title;
     }
 
