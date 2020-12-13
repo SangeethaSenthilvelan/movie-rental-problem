@@ -58,19 +58,13 @@ public class Customer {
     }
     private double getTotalRentalAmount()
     {
-        Stream<Rental> rentalStreamOfValidRentsAmounts = rentals.stream().filter(rental -> rental.getRentAmount() != 0.0);
-
-        double totalRentalAmount = rentalStreamOfValidRentsAmounts.mapToDouble(Rental::getRentAmount).sum();
-
-        return totalRentalAmount;
+        return rentals.stream().mapToDouble(Rental::getRentAmount).sum();
     }
 
     private double getFrequentRenterPoint()
     {
-        Stream<Rental> rentalStreamOfValidFrequentRenterPoints = rentals.stream().filter(rental -> rental.getFrequentRenterPoints() != 0.0);
+       return rentals.stream().mapToDouble(Rental::getFrequentRenterPoints).sum();
 
-        double totalFrequentRenterPoints = rentalStreamOfValidFrequentRenterPoints.mapToDouble(Rental::getFrequentRenterPoints).sum();
 
-        return totalFrequentRenterPoints;
     }
 }

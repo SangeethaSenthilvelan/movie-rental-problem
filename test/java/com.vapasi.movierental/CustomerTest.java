@@ -25,9 +25,7 @@ public class CustomerTest {
         customer.addRental(rental3);
 
         String actualOutput = customer.getStatement();
-        String expected = null;
-
-        assertEquals(expected,actualOutput);
+        assertNotNull(actualOutput);
     }
 
     @Test
